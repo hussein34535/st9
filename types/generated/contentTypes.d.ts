@@ -485,6 +485,134 @@ export interface PluginUsersPermissionsUser
   };
 }
 
+export interface ApiChannelChannel extends Struct.CollectionTypeSchema {
+  collectionName: 'channels';
+  info: {
+    singularName: 'channel';
+    pluralName: 'channels';
+    displayName: 'Channel';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Schema.Attribute.String;
+    streamLink: Schema.Attribute.String;
+    match: Schema.Attribute.Relation<'oneToOne', 'api::match.match'>;
+    channel_categories: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::channel-category.channel-category'
+    >;
+    createdAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    publishedAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::channel.channel'
+    >;
+  };
+}
+
+export interface ApiChannelCategoryChannelCategory
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'channel_categories';
+  info: {
+    singularName: 'channel-category';
+    pluralName: 'channel-categories';
+    displayName: 'ChannelCategory';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Schema.Attribute.String;
+    channel: Schema.Attribute.Relation<'manyToOne', 'api::channel.channel'>;
+    createdAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    publishedAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::channel-category.channel-category'
+    >;
+  };
+}
+
+export interface ApiMatchMatch extends Struct.CollectionTypeSchema {
+  collectionName: 'matches';
+  info: {
+    singularName: 'match';
+    pluralName: 'matches';
+    displayName: 'Match';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    teamA: Schema.Attribute.String & Schema.Attribute.Required;
+    teamB: Schema.Attribute.String & Schema.Attribute.Required;
+    logoA: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    logoB: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    matchTime: Schema.Attribute.Time &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'00:00:00.000'>;
+    commentator: Schema.Attribute.String;
+    channel: Schema.Attribute.String;
+    champion: Schema.Attribute.String;
+    streamLink: Schema.Attribute.Blocks;
+    createdAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    publishedAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::match.match'>;
+  };
+}
+
+export interface ApiNewNew extends Struct.CollectionTypeSchema {
+  collectionName: 'news';
+  info: {
+    singularName: 'new';
+    pluralName: 'news';
+    displayName: 'News';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    title: Schema.Attribute.String;
+    content: Schema.Attribute.String;
+    image: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios',
+      true
+    >;
+    date: Schema.Attribute.DateTime;
+    link: Schema.Attribute.String;
+    createdAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    publishedAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::new.new'>;
+  };
+}
+
 export interface AdminPermission extends Struct.CollectionTypeSchema {
   collectionName: 'admin_permissions';
   info: {
@@ -860,6 +988,10 @@ declare module '@strapi/strapi' {
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
+      'api::channel.channel': ApiChannelChannel;
+      'api::channel-category.channel-category': ApiChannelCategoryChannelCategory;
+      'api::match.match': ApiMatchMatch;
+      'api::new.new': ApiNewNew;
       'admin::permission': AdminPermission;
       'admin::user': AdminUser;
       'admin::role': AdminRole;

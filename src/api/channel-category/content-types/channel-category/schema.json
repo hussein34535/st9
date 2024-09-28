@@ -1,0 +1,24 @@
+{
+  "kind": "collectionType",
+  "collectionName": "channel_categories",
+  "info": {
+    "singularName": "channel-category",
+    "pluralName": "channel-categories",
+    "displayName": "ChannelCategory"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "channel": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::channel.channel",
+      "inversedBy": "channel_categories"
+    }
+  }
+}

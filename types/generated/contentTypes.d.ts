@@ -491,18 +491,18 @@ export interface ApiChannelChannel extends Struct.CollectionTypeSchema {
     singularName: 'channel';
     pluralName: 'channels';
     displayName: 'Channel';
+    description: '';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
     name: Schema.Attribute.String;
-    streamLink: Schema.Attribute.String;
-    match: Schema.Attribute.Relation<'oneToOne', 'api::match.match'>;
     channel_categories: Schema.Attribute.Relation<
-      'oneToMany',
+      'manyToMany',
       'api::channel-category.channel-category'
     >;
+    StreamLink: Schema.Attribute.Blocks;
     createdAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     publishedAt: Schema.Attribute.DateTime;
@@ -531,7 +531,7 @@ export interface ApiChannelCategoryChannelCategory
   };
   attributes: {
     name: Schema.Attribute.String;
-    channel: Schema.Attribute.Relation<'manyToOne', 'api::channel.channel'>;
+    channels: Schema.Attribute.Relation<'manyToMany', 'api::channel.channel'>;
     createdAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     publishedAt: Schema.Attribute.DateTime;

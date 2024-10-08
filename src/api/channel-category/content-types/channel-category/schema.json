@@ -14,9 +14,9 @@
     "name": {
       "type": "string"
     },
-    "channel": {
+    "channels": {
       "type": "relation",
-      "relation": "manyToOne",
+      "relation": "manyToMany",
       "target": "api::channel.channel",
       "inversedBy": "channel_categories"
     }

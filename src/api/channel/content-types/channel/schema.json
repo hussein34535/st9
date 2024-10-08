@@ -4,7 +4,8 @@
   "info": {
     "singularName": "channel",
     "pluralName": "channels",
-    "displayName": "Channel"
+    "displayName": "Channel",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -14,19 +15,14 @@
     "name": {
       "type": "string"
     },
-    "streamLink": {
-      "type": "string"
-    },
-    "match": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::match.match"
-    },
     "channel_categories": {
       "type": "relation",
-      "relation": "oneToMany",
+      "relation": "manyToMany",
       "target": "api::channel-category.channel-category",
-      "mappedBy": "channel"
+      "mappedBy": "channels"
+    },
+    "StreamLink": {
+      "type": "blocks"
     }
   }
 }

@@ -588,19 +588,19 @@ export interface ApiNewNew extends Struct.CollectionTypeSchema {
     singularName: 'new';
     pluralName: 'news';
     displayName: 'News';
+    description: '';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
     title: Schema.Attribute.String;
-    content: Schema.Attribute.String;
     image: Schema.Attribute.Media<
       'images' | 'files' | 'videos' | 'audios',
       true
     >;
     date: Schema.Attribute.DateTime;
-    link: Schema.Attribute.String;
+    link: Schema.Attribute.Blocks & Schema.Attribute.Required;
     createdAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     publishedAt: Schema.Attribute.DateTime;

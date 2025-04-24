@@ -30,7 +30,7 @@
       "type": "date"
     },
     "url": {
-      "type": "richtext"
+      "type": "blocks"
     }
   }
 }

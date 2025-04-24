@@ -560,7 +560,10 @@ export interface ApiGoalGoal extends Struct.CollectionTypeSchema {
   };
   attributes: {
     title: Schema.Attribute.String;
-    image: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    image: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios',
+      true
+    >;
     time: Schema.Attribute.Date;
     url: Schema.Attribute.RichText;
     createdAt: Schema.Attribute.DateTime;

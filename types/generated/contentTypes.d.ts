@@ -565,7 +565,7 @@ export interface ApiGoalGoal extends Struct.CollectionTypeSchema {
       true
     >;
     time: Schema.Attribute.Date;
-    url: Schema.Attribute.RichText;
+    url: Schema.Attribute.Blocks;
     createdAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     publishedAt: Schema.Attribute.DateTime;

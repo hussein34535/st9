@@ -547,6 +547,34 @@ export interface ApiChannelCategoryChannelCategory
   };
 }
 
+export interface ApiGoalGoal extends Struct.CollectionTypeSchema {
+  collectionName: 'goals';
+  info: {
+    singularName: 'goal';
+    pluralName: 'goals';
+    displayName: 'goal';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    title: Schema.Attribute.String;
+    image: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    time: Schema.Attribute.Date;
+    url: Schema.Attribute.RichText;
+    createdAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    publishedAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::goal.goal'>;
+  };
+}
+
 export interface ApiMatchMatch extends Struct.CollectionTypeSchema {
   collectionName: 'matches';
   info: {
@@ -990,6 +1018,7 @@ declare module '@strapi/strapi' {
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'api::channel.channel': ApiChannelChannel;
       'api::channel-category.channel-category': ApiChannelCategoryChannelCategory;
+      'api::goal.goal': ApiGoalGoal;
       'api::match.match': ApiMatchMatch;
       'api::new.new': ApiNewNew;
       'admin::permission': AdminPermission;

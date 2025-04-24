@@ -1,0 +1,36 @@
+{
+  "kind": "collectionType",
+  "collectionName": "goals",
+  "info": {
+    "singularName": "goal",
+    "pluralName": "goals",
+    "displayName": "goal",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "time": {
+      "type": "date"
+    },
+    "url": {
+      "type": "richtext"
+    }
+  }
+}
